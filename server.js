@@ -103,5 +103,5 @@ app.post('/send-quote', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running at //westhillexpressllc.com/${PORT}`);
 });
