@@ -102,6 +102,28 @@ app.post('/send-quote', async (req, res) => {
   }
 });
 
+app.post('/webhook', express.json(), (req, res) => {
+  const payload = req.body;
+  console.log("📦 Webhook received:", payload);
+
+   const { exec } = require("child_process");
+   exec("~/deploy.sh", (err, stdout, stderr) => {
+     if (err) {
+       console.error("❌ Deploy script error:", err);
+       return;
+     }
+     console.log("✅ Deploy script output:", stdout);
+   });
+
+  res.status(200).send('Webhook received');
+});
+
+
+app.post('/webhook', express.json(), (req, res) => {
+  console.log('✅ GitHub Webhook received:', req.body);
+  res.sendStatus(200);
+});
+
 app.listen(PORT, () => {
   console.log(`Server running at //westhillexpressllc.com/${PORT}`);
 });
